@@ -1,0 +1,60 @@
+# python
+__pycache__/
+*.pyc
+*.pyo
+
+# lint / type-checker caches (these bake in absolute paths — never commit them)
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+
+# crabcab runtime junk (never commit these)
+proxy.log
+debug.log
+*.log
+
+# os junk
+.DS_Store
+Thumbs.db
+
+# editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# runtime quota state (numbers only, still local-only)
+usage-state.json
+*-state.json
+reset-news.txt
+
+# release build artifacts
+dist/
+allowed_signers
+
+# a downloaded release + its verification files (so verifying inside a clone stays clean)
+crabcab-*.tar.gz
+SHA256SUMS
+SHA256SUMS.sig
+
+# secrets / credentials - belt-and-suspenders. these live OUTSIDE the repo by design
+# (~/.codex, ~/crabcab, ~/.ssh); this makes sure a stray copy can never be committed,
+# even by `git add -A`.
+.secret
+auth.json
+.codex/
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.keystore
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+crabcab_release*
+
+# more runtime state (local-only, numbers)
+session-cost.json
+*.jsonl

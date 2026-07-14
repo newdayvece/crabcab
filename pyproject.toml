@@ -1,0 +1,25 @@
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+exclude = [".git"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "S", "UP"]
+# every ignore below is an intentional pattern or a context false-positive in crabcab, not a bug:
+#   S603/S607  subprocess + curl are the whole design
+#   S105       URL constants (e.g. TOKEN_URL) are not secrets
+#   S110/S112  best-effort try/except pass|continue: never crash the proxy on a log write or a probe
+#   S314       xml is parsed only after a manual DOCTYPE/ENTITY reject (XXE / billion-laughs pre-blocked)
+#   B012       the single return-in-finally drops an over-limit request on purpose
+#   E501       a few long descriptive + test-assertion strings
+ignore = ["S603", "S607", "S105", "S110", "S112", "S314", "B012", "E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# the offline selftest deliberately uses compact inline imports + semicolon setup
+"scripts/selftest.py" = ["E402", "E702"]
+
+[tool.bandit]
+exclude_dirs = [".git"]
+# mirrors the ruff rationale above: subprocess import (B404), xml import + parse (B405/B314),
+# try/except pass|continue (B110/B112), URL constant (B105), curl invocation (B603/B607).
+skips = ["B603", "B607", "B105", "B110", "B112", "B314", "B404", "B405"]
