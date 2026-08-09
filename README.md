@@ -4,7 +4,7 @@
 
 <h1 align="center">crabcab</h1>
 
-<p align="center"><em>the crab, in a cab</em></p>
+<p align="center"><em> CRAB AS A CAB. THE CLAUDEX MOBILE</em></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/runs-local-2ea44f" alt="runs local">
